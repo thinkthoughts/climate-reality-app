@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering Statements With AGAPI-Agents | Climate Reality</title>
+  <meta name="description" content="Engineering Statements specify next steps in context. A Climate Reality feature on AGAPI-Agents and reproducible specifications for agentic science.">
+  <style>
+    :root {
+      --bg: #f7f4ec;
+      --paper: #ffffff;
+      --ink: #18212b;
+      --muted: #5f6b78;
+      --line: #d9ded7;
+      --accent: #216869;
+      --accent-2: #d97706;
+      --soft: #eaf3f0;
+      --soft-2: #fff3dc;
+      --shadow: 0 20px 60px rgba(24, 33, 43, 0.10);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff8e8 0, var(--bg) 38%, #eef4f2 100%);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offset: 0.18em; }
+    a:hover { color: var(--accent-2); }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    main { padding: 48px 0 72px; }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      padding: 48px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(2.3rem, 6vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .dek {
+      max-width: 820px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.5;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .quick-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .quick-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    section, figure {
+      margin: 34px 0;
+    }
+
+    .card {
+      padding: 32px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 36px rgba(24, 33, 43, 0.06);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.45rem, 3vw, 2.3rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    p { margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .mini {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .mini h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .mini p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    figure {
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      text-align: center;
+    }
+
+    .statement-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    .statement-list li {
+      padding: 14px 16px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      font-weight: 700;
+    }
+
+    .callout {
+      background: linear-gradient(135deg, var(--soft), var(--soft-2));
+      border: 1px solid var(--line);
+    }
+
+    .quote {
+      font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+    }
+
+    .links-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    .links-list a {
+      display: block;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--paper);
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .links-list a span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero, .card { padding: 24px; }
+      .grid, .statement-list { grid-template-columns: 1fr; }
+      nav { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Site navigation">
+        <div class="brand">Climate Reality / Statements</div>
+        <div class="nav-links">
+          <a href="/">Climate Reality</a>
+          <a href="https://labreports.app">Lab Reports</a>
+          <a href="https://climatedemocracy.app">Climate Democracy</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Featured Statement</div>
+
+      <h1>Engineering Statements With AGAPI-Agents</h1>
+
+      <p class="dek">
+        Toward reproducible specifications for agentic science.
+        Engineering Statements specify next steps in context.
+      </p>
+
+      <div class="quick-links" aria-label="Primary links">
+        <a href="https://arxiv.org/abs/2512.11935">📄 Paper</a>
+        <a href="https://github.com/atomgptlab/agapi">💻 AGAPI GitHub</a>
+        <a href="https://github.com/atomgptlab/jarvis-tools-notebooks/blob/master/jarvis-tools-notebooks/agapi_example.ipynb">📓 Notebook</a>
+        <a href="https://x.com/dr_k_choudhary/status/2000781758027968981">🗣️ Announcement</a>
+        <a href="https://github.com/thinkthoughts/engineering-statements">🧪 Engineering Statements</a>
+      </div>
+    </section>
+
+    <figure>
+      <img
+        src="engineering-statements-agapi.png"
+        alt="Infographic titled Engineering Statements With AGAPI-Agents. It shows Engineering Statement flowing to Agent, Planner, Executor, Evidence, Constraint Evaluation, Summarizer, and Lab Report, with supporting parts for claim or objective, constraints, tools and data, workflow, evidence, and outputs."
+      >
+      <figcaption>
+        Engineering Statements specify scientific intent so agentic systems can plan, execute, evaluate evidence, and report reproducible artifacts.
+      </figcaption>
+    </figure>
+
+    <section class="card callout">
+      <p class="quote">
+        Climate Reality describes contexts and constraints.
+        Engineering Statements specify next steps in context.
+        Climate Democracy prescribes collaborative action.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Premise</h2>
+      <p>
+        AGAPI-Agents demonstrates an open-access agentic platform for scientific workflows.
+        It connects reasoning engines with scientific tools, databases, and machine-learning models
+        through an Agent–Planner–Executor–Summarizer architecture.
+      </p>
+      <p>
+        Engineering Statements propose a portable specification layer for this kind of work:
+        claims, constraints, tools, evidence, workflows, and outputs written clearly enough
+        to be inspected, reproduced, extended, and improved.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="mini">
+        <h3>Climate Reality describes.</h3>
+        <p>
+          Contexts and constraints come first. A statement becomes meaningful when its
+          physical, computational, and evidential conditions are explicit.
+        </p>
+      </article>
+
+      <article class="mini">
+        <h3>Engineering Statements specify.</h3>
+        <p>
+          Specifications translate scientific intent into next steps: what to test,
+          what tools to use, what evidence to keep, and what outputs to produce.
+        </p>
+      </article>
+
+      <article class="mini">
+        <h3>Climate Democracy prescribes.</h3>
+        <p>
+          Shared context and reproducible artifacts can support collaborative action
+          instead of isolated claims or premature division.
+        </p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Engineering Statements Specify</h2>
+      <p>
+        An Engineering Statement is not merely a prompt. It is a structured statement
+        of scientific intent that preserves context while defining executable next steps.
+      </p>
+
+      <ul class="statement-list">
+        <li>Claim / Objective</li>
+        <li>Constraints</li>
+        <li>Tools and Data</li>
+        <li>Workflow</li>
+        <li>Evidence</li>
+        <li>Outputs</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>AGAPI-Agents</h2>
+      <p>
+        AGAPI provides open infrastructure for agentic science by connecting scientific intent
+        to planning, execution, evidence, summarization, and scientific results.
+      </p>
+      <p>
+        Its materials-science workflows include database search, property prediction,
+        force-field optimization, X-ray diffraction analysis, band-structure calculation,
+        heterostructure construction, and multi-step defect engineering.
+      </p>
+    </section>
+
+    <figure>
+      <img
+        src="agapi-agents-workflow.png"
+        alt="Infographic titled AGAPI-Agents: Open Infrastructure for Agentic Science. It shows scientific intent flowing to agent, planner, executor, evidence, summarizer, and scientific result, supported by open reasoning engines and scientific tools including JARVIS, ALIGNN, ALIGNN-FF, DiffractGPT, SlaKoNet, PDB, OPTIMADE, and arXiv."
+      >
+      <figcaption>
+        AGAPI separates reasoning from execution through tool-augmented scientific workflows.
+      </figcaption>
+    </figure>
+
+    <section class="card">
+      <h2>Why Constraint Evaluation Matters</h2>
+      <p>
+        Tool use is not automatically beneficial. Scientific agents need ways to evaluate
+        whether a selected tool, database, model, or workflow improves the statement being tested.
+      </p>
+      <p>
+        Engineering Statements make that evaluation explicit by separating preferences,
+        constraints, evidence, and outputs. Preferences guide the approach. Constraints
+        preserve meaningful evaluation.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Shared Scientific Intent</h2>
+      <p>
+        Scientific intent becomes more valuable when it can be shared, inspected,
+        reproduced, and extended. Engineering Statements encourage that sharing by
+        specifying next steps in context.
+      </p>
+      <p>
+        This page is an initial Climate Reality feature for the in-progress
+        <a href="https://github.com/thinkthoughts/engineering-statements">engineering-statements</a>
+        repository. Repo outputs, notebooks, YAML examples, and executable artifacts
+        can be added as the project develops.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Explore Further</h2>
+
+      <ul class="links-list">
+        <li>
+          <a href="https://arxiv.org/abs/2512.11935">
+            📄 AGAPI-Agents paper
+            <span>AGAPI-Agents: An Open-Access Agentic AI Platform for Accelerated Materials Design on AtomGPT.org.</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/atomgptlab/agapi">
+            💻 AGAPI GitHub repository
+            <span>Open implementation from atomgptlab.</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/atomgptlab/jarvis-tools-notebooks/blob/master/jarvis-tools-notebooks/agapi_example.ipynb">
+            📓 AGAPI example notebook
+            <span>JARVIS tools notebook demonstrating AGAPI usage.</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://x.com/dr_k_choudhary/status/2000781758027968981">
+            🗣️ AGAPI announcement thread
+            <span>Original social post from Dr. Kamal Choudhary.</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/thinkthoughts/engineering-statements">
+            🧪 Engineering Statements repository
+            <span>In-progress specification layer for shared scientific intent.</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Climate Reality describes contexts and constraints. Engineering Statements specify next steps in context. Climate Democracy prescribes collaborative action.
+    </div>
+  </footer>
+</body>
+</html>
