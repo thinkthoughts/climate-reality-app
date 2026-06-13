@@ -421,7 +421,37 @@
         can be added as the project develops.
       </p>
     </section>
-
+    <section class="card">
+      <h2>Next Step: Use AGAPI Through Engineering Statements</h2>
+    
+      <p>
+        The next technical step is to use AGAPI directly, starting from a clear
+        Engineering Statement instead of an isolated prompt. The statement specifies
+        the objective, constraints, evidence, tools, workflow, and outputs before an
+        agentic science system begins planning or execution.
+      </p>
+    
+      <p>
+        The first companion artifact is
+        <a href="https://github.com/thinkthoughts/engineering-statements/blob/main/statements/agapi-agents.yaml">
+          agapi-agents.yaml
+        </a>.
+        It is a portable YAML specification connecting AGAPI-style infrastructure
+        with reproducible next steps.
+      </p>
+    
+      <p>
+        The companion notebook demonstrates the workflow by loading the YAML,
+        rendering a readable Engineering Statement, and writing reusable Markdown,
+        JSON, and YAML outputs.
+      </p>
+    
+      <p>
+        <a href="https://colab.research.google.com/github/thinkthoughts/engineering-statements/blob/main/notebooks/00_agapi.ipynb">
+          Open the AGAPI Engineering Statement notebook in Google Colab →
+        </a>
+      </p>
+    </section>
     <section class="card">
       <h2>Explore Further</h2>
 
@@ -458,6 +488,19 @@
           <a href="https://github.com/thinkthoughts/engineering-statements">
             🧪 Engineering Statements repository
             <span>In-progress specification layer for shared scientific intent.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/thinkthoughts/engineering-statements/blob/main/statements/agapi-agents.yaml">
+            🧾 AGAPI Engineering Statement YAML
+            <span>Portable specification for claims, constraints, evidence, workflows, outputs, and next steps.</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="https://colab.research.google.com/github/thinkthoughts/engineering-statements/blob/main/notebooks/00_agapi.ipynb">
+            📓 AGAPI Engineering Statement notebook
+            <span>Companion notebook that loads the YAML and renders reusable artifacts.</span>
           </a>
         </li>
       </ul>
